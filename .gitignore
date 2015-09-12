@@ -1,0 +1,58 @@
+# IMPORTANT: If you committed to the git repository before you added this .gitignore file
+# you need to delete the excluded files manually from your git repository, to ensure, 
+# that they are not tracked anymore. To delete them from git, just do the following:
+# 
+#     git rm --cached FILENAME
+#
+# ... Then everything should be fine.
+
+# Exclude personal Xcode user settings
+xcuserdata/ 
+**/xcuserdata/
+
+# AppCode
+.idea/
+build/
+
+# Generated
+bin
+gen
+obj
+out
+*.ipa
+
+# Podfiles
+Pods/
+
+# Other
+Thumbs.db
+.DS_Store
+tmp
+
+# Created by https://www.gitignore.io/api/xcode
+
+### Xcode ###
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
