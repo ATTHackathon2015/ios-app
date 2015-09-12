@@ -16,6 +16,7 @@
 		B636BED01BA3B9AF002E4648 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B636BECE1BA3B9AF002E4648 /* LaunchScreen.storyboard */; };
 		B636BEDB1BA3B9AF002E4648 /* TraylTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636BEDA1BA3B9AF002E4648 /* TraylTests.swift */; };
 		B636BEE61BA3B9AF002E4648 /* TraylUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636BEE51BA3B9AF002E4648 /* TraylUITests.swift */; };
+		B636BEF41BA3F0BD002E4648 /* PinImageAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636BEF31BA3F0BD002E4648 /* PinImageAnnotationView.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B636BEE11BA3B9AF002E4648 /* TraylUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TraylUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B636BEE51BA3B9AF002E4648 /* TraylUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraylUITests.swift; sourceTree = "<group>"; };
 		B636BEE71BA3B9AF002E4648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B636BEF31BA3F0BD002E4648 /* PinImageAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinImageAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			children = (
 				B636BEC51BA3B9AF002E4648 /* AppDelegate.swift */,
 				B636BEC71BA3B9AF002E4648 /* ViewController.swift */,
+				B636BEF31BA3F0BD002E4648 /* PinImageAnnotationView.swift */,
 				B636BEC91BA3B9AF002E4648 /* Main.storyboard */,
 				B636BECC1BA3B9AF002E4648 /* Assets.xcassets */,
 				B636BECE1BA3B9AF002E4648 /* LaunchScreen.storyboard */,
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B636BEF41BA3F0BD002E4648 /* PinImageAnnotationView.swift in Sources */,
 				B636BEC81BA3B9AF002E4648 /* ViewController.swift in Sources */,
 				B636BEC61BA3B9AF002E4648 /* AppDelegate.swift in Sources */,
 			);

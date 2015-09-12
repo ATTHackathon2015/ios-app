@@ -21,8 +21,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var postMode = false
     var confirmPresent = true
     
+    var droppedPin: MKAnnotation?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mapView.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         self.postItemButton.layer.shadowColor = UIColor.grayColor().CGColor
         self.postItemButton.layer.shadowOffset = CGSizeMake(0, 1.0)
@@ -99,6 +102,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func cancelPosting(sender: AnyObject) {
         postMode = false
+        if (droppedPin != nil) {
+            
+        }
         if (confirmPresent) {
             confirmPresent = false
             UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.TransitionNone, animations: { () -> Void in
@@ -129,16 +135,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     }) { (bool) -> Void in
                 }
             }
+            
             let point = recognizer.locationInView(self.mapView)
             let location = mapView.convertPoint(point, toCoordinateFromView: self.view)
+            let annotation = PinImageAnnotationView(myCoordinate: location, myPinImage: UIImage(named: "neutral_grey_pin")!)
             
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = location
+            if (droppedPin != nil) {
+                self.mapView.removeAnnotation(droppedPin!)
+            }
+            droppedPin = annotation
             self.mapView.addAnnotation(annotation)
         }
         
     }
     
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let pinView = MKAnnotationView()
+        pinView.image = UIImage(named: "neutral_grey_pin")
+        print("Delegated")
+        return pinView
+    }
     
 }
 
