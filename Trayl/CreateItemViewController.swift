@@ -23,7 +23,7 @@ class CreateItemViewController: UIViewController {
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.HTTPBody = "{\"phone\": \"4048600194\"\n,\"data\": {\n \"title\": \"Basketball\",\n \"description\": \"Blah\",\n\"contact\": \"434-260-1893\",\n\"location\": {\n\"lat\": \"37.0\",\n\"long\": \"-120.0\"}}}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = "{\"phone\": \"\(phone)\" \n,\"data\": {\n \"\(title)\": \"Basketball\",\n \"description\": \"\(description)\",\n\"contact\": \"434-260-1893\",\n\"location\": {\n\"lat\": \"\(location.latitude.description)\",\n\"long\": \"\(location.longitude)\"}}}".dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
         
