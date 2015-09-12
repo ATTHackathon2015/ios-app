@@ -15,6 +15,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var postItemButton: UIButton!
     let locationManager = CLLocationManager()
+    var foundLocation = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
@@ -40,8 +42,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        print(location?.coordinate)
+        if !foundLocation {
+            let location = locations.first
+            mapView.setCamera(MKMapCamera(lookingAtCenterCoordinate: (location?.coordinate)!, fromEyeCoordinate: (location?.coordinate)!, eyeAltitude: 1000.0), animated: false)
+            foundLocation = true
+        }
     }
 
     override func didReceiveMemoryWarning() {
