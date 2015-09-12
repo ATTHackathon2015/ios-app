@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Main-->
+        <!--App Name-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Trayl" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,20 +27,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7u-h0-zu7">
-                                <rect key="frame" x="20" y="500" width="280" height="48"/>
+                                <rect key="frame" x="8" y="490" width="304" height="58"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.32156862749999998" green="0.63529411759999999" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="A3R-rf-HhV"/>
+                                    <constraint firstAttribute="height" constant="58" id="A3R-rf-HhV"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Post Item"/>
                             </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="T7u-h0-zu7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4" id="2TS-Gh-Aya"/>
+                            <constraint firstItem="T7u-h0-zu7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-8" id="2TS-Gh-Aya"/>
                             <constraint firstItem="B8q-VQ-esq" firstAttribute="trailing" secondItem="PTC-9e-BKk" secondAttribute="trailing" id="D4c-Dw-cYR"/>
                             <constraint firstItem="B8q-VQ-esq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DhL-gW-4ep"/>
                             <constraint firstItem="PTC-9e-BKk" firstAttribute="centerX" secondItem="T7u-h0-zu7" secondAttribute="centerX" id="PhE-U4-1Qs"/>
@@ -52,7 +53,7 @@
                             <constraint firstItem="PTC-9e-BKk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="taQ-Eu-aTg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Main" id="7ko-la-qZY"/>
+                    <navigationItem key="navigationItem" title="App Name" id="7ko-la-qZY"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="mapView" destination="B8q-VQ-esq" id="9nd-LX-lNu"/>

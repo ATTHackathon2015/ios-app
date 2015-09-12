@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11310B9C1BA3BEE0008D2551 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11310B9B1BA3BEE0008D2551 /* MapKit.framework */; };
+		114D32511BA3C84A00731C9D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D32501BA3C84A00731C9D /* CoreLocation.framework */; };
 		B636BEC61BA3B9AF002E4648 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636BEC51BA3B9AF002E4648 /* AppDelegate.swift */; };
 		B636BEC81BA3B9AF002E4648 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B636BEC71BA3B9AF002E4648 /* ViewController.swift */; };
 		B636BECB1BA3B9AF002E4648 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B636BEC91BA3B9AF002E4648 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		11310B9B1BA3BEE0008D2551 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		114D32501BA3C84A00731C9D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B636BEC21BA3B9AF002E4648 /* Trayl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trayl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B636BEC51BA3B9AF002E4648 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B636BEC71BA3B9AF002E4648 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114D32511BA3C84A00731C9D /* CoreLocation.framework in Frameworks */,
 				11310B9C1BA3BEE0008D2551 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +83,7 @@
 		B636BEB91BA3B9AF002E4648 = {
 			isa = PBXGroup;
 			children = (
+				114D32501BA3C84A00731C9D /* CoreLocation.framework */,
 				11310B9B1BA3BEE0008D2551 /* MapKit.framework */,
 				B636BEC41BA3B9AF002E4648 /* Trayl */,
 				B636BED91BA3B9AF002E4648 /* TraylTests */,
