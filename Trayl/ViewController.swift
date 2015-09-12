@@ -9,17 +9,22 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SwiftyJSON
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var confirmButton: UIButton!
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var postItemButton: UIButton!
+    @IBOutlet var searchBar: UISearchBar!
+    var searchBarIsActive = false
+    
     let locationManager = CLLocationManager()
     var foundLocation = false
     var postMode = false
-    var confirmPresent = true
+    var confirmPresent = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +50,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.confirmButton.transform = CGAffineTransformMakeTranslation(0, 150)
         self.cancelButton.transform = CGAffineTransformMakeTranslation(0, 120)
         
-        
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
@@ -58,6 +62,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let titleDict: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         self.navigationController!.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.hidden = true
+        
+        //TODO: Add lost item
+//        addItem("4048600194", itemName: "Basketball", itemDescription: "NCAA Wilson basketball", contact: "404-860-0194", location: CLLocationCoordinate2DMake(37.3, -120.0))
+        getPoll()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBarIsActive = true
+        self.tableView.hidden = false
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBarIsActive = false
+        self.tableView.hidden = true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        searchBar.endEditing(true)
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
@@ -71,7 +97,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if !foundLocation {
             let location = locations.first
-            mapView.setCamera(MKMapCamera(lookingAtCenterCoordinate: (location?.coordinate)!, fromEyeCoordinate: (location?.coordinate)!, eyeAltitude: 1000.0), animated: false)
+            mapView.setCamera(MKMapCamera(lookingAtCenterCoordinate: (location?.coordinate)!, fromEyeCoordinate: (location?.coordinate)!, eyeAltitude: 5000.0), animated: false)
             foundLocation = true
         }
     }
@@ -116,8 +142,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 }) { (bool) -> Void in
             }
         }
-        
-        
     }
 
     @IBAction func addPin(recognizer: UITapGestureRecognizer) {
@@ -139,6 +163,51 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell")!
+        return cell
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func addItem(phone: String, itemName: String, itemDescription: String, contact: String, location: CLLocationCoordinate2D) {
+        let url = "http://sca3.canain.com:7000/add"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.HTTPBody = "{\"phone\": \(phone),\"data\": {\"title\": \(itemName),\"description\": \(itemDescription),\"contact\": \"434-260-1893\",\"location\": {\"lat\": \(location.latitude),\"long\": \(location.longitude)}}}".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            print(data)
+        }
+        task.resume()
+    }
+    
+    func getPoll() {
+        let url = "http://sca3.canain.com:7000/poll"
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            let parsedJSON = JSON(data: data!)
+            let dict = parsedJSON.dictionary!
+            print(dict["data"])
+        }
+        task.resume()
+
+    }
     
 }
 
