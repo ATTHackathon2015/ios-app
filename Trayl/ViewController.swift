@@ -12,6 +12,7 @@ import MapKit
 class ViewController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var postItemButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
