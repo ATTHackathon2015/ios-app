@@ -21,9 +21,6 @@ obj
 out
 *.ipa
 
-# Podfiles
-Pods/
-
 # Other
 Thumbs.db
 .DS_Store
