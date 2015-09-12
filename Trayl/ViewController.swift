@@ -179,15 +179,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func addItem(phone: String, itemName: String, itemDescription: String, contact: String, location: CLLocationCoordinate2D) {
         let url = "http://sca3.canain.com:7000/add"
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.HTTPMethod = "GET"
+        request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.HTTPBody = "{\"phone\": \(phone),\"data\": {\"title\": \(itemName),\"description\": \(itemDescription),\"contact\": \"434-260-1893\",\"location\": {\"lat\": \(location.latitude),\"long\": \(location.longitude)}}}".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPBody = "{\"phone\": \"4048600194\"\n,\"data\": {\n \"title\": \"Basketball\",\n \"description\": \"Blah\",\n\"contact\": \"434-260-1893\",\n\"location\": {\n\"lat\": \"37.0\",\n\"long\": \"-120.0\"}}}".dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
         
         let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            print(data)
+            print(response)
+            let parsedJSON = JSON(data: data!)
+            print(parsedJSON)
         }
         task.resume()
     }
@@ -202,11 +204,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             let parsedJSON = JSON(data: data!)
-            let dict = parsedJSON.dictionary!
-            print(dict["data"])
+            let dict = parsedJSON.dictionaryValue
+
+            let arr = dict["data"]!.array
+            
+            for var i = 0; i < arr!.count; i++ {
+                let title = arr![i].dictionaryValue["title"]?.stringValue
+                let lat = arr![i].dictionaryValue["location"]?.dictionaryValue["lat"]?.doubleValue
+                let long = arr![i].dictionaryValue["location"]?.dictionaryValue["long"]?.doubleValue
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = CLLocationCoordinate2DMake(lat!, long!)
+                    annotation.title = title
+                    self.mapView.addAnnotation(annotation)
+                })
+            }
         }
         task.resume()
-
     }
     
 }
